@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Management System - Assignment Report</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 2.5cm;
+    }
+
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12pt;
+      color: #000000;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      background: white;
+    }
+
+    .page {
+      width: 21cm;
+      min-height: 29.7cm;
+      margin: 0 auto;
+      padding: 2.5cm;
+      box-sizing: border-box;
+    }
+
+    /* ══════════════════════════════════ */
+    /* COVER PAGE */
+    /* ══════════════════════════════════ */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 29.7cm;
+      text-align: center;
+      padding: 1.5cm 2.5cm;
+      page-break-after: always;
+    }
+
+    .cover-page .university-name {
+      font-size: 18pt;
+      font-weight: bold;
+      color: #000;
+      margin-top: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-page .department {
+      font-size: 13pt;
+      color: #333;
+      margin-top: 6px;
+    }
+
+    .cover-page .divider {
+      width: 300px;
+      height: 2px;
+      background: #000;
+      margin: 24px auto;
+    }
+
+    .cover-page .assignment-label {
+      font-size: 14pt;
+      font-weight: bold;
+      color: #333;
+      margin-top: 30px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border: 2px solid #000;
+      padding: 8px 32px;
+    }
+
+    .cover-page .project-title {
+      font-size: 24pt;
+      font-weight: bold;
+      color: #000;
+      margin-top: 36px;
+      line-height: 1.3;
+    }
+
+    .cover-page .course-info {
+      font-size: 13pt;
+      color: #333;
+      margin-top: 16px;
+    }
+
+    .cover-page .info-section {
+      margin-top: 50px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      text-align: left;
+      padding: 0 40px;
+    }
+
+    .cover-page .info-box {
+      border: 1.5px solid #000;
+      padding: 16px 24px;
+      width: 45%;
+    }
+
+    .cover-page .info-box h4 {
+      font-size: 11pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0 0 10px 0;
+      border-bottom: 1px solid #999;
+      padding-bottom: 6px;
+      color: #333;
+    }
+
+    .cover-page .info-box p {
+      margin: 4px 0;
+      font-size: 11pt;
+      line-height: 1.6;
+    }
+
+    .cover-page .date-section {
+      margin-top: 40px;
+      font-size: 13pt;
+      font-weight: bold;
+    }
+
+    .cover-page .footer-line {
+      margin-top: auto;
+      width: 300px;
+      height: 2px;
+      background: #000;
+      margin-bottom: 10px;
+    }
+
+    /* ══════════════════════════════════ */
+    /* GENERAL */
+    /* ══════════════════════════════════ */
+    h1 {
+      font-size: 18pt;
+      font-weight: bold;
+      color: #000;
+      border-bottom: 2px solid #000;
+      padding-bottom: 6px;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: 14pt;
+      font-weight: bold;
+      color: #000;
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 12pt;
+      font-weight: bold;
+      color: #222;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin: 8px 0;
+      text-align: justify;
+    }
+
+    /* TOC */
+    .toc { page-break-after: always; }
+    .toc h1 { text-align: center; border: none; }
+    .toc table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    .toc td { padding: 8px 4px; font-size: 12pt; border-bottom: 1px dotted #999; vertical-align: top; }
+    .toc td:first-child { width: 50px; font-weight: bold; }
+    .toc td:last-child { width: 50px; text-align: right; font-weight: bold; }
+    .toc .sub td { padding-left: 40px; font-size: 11pt; border-bottom: 1px dotted #ccc; }
+
+    /* Tables */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 11pt;
+    }
+
+    table.data-table thead tr {
+      background: #1a1a2e;
+      color: white;
+    }
+
+    table.data-table th {
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: bold;
+      font-size: 10.5pt;
+    }
+
+    table.data-table td {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+    }
+
+    table.data-table tbody tr:nth-child(even) { background: #f5f5f5; }
+
+    /* Code */
+    pre {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      border-radius: 4px;
+      padding: 14px 16px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 9.5pt;
+      overflow-x: auto;
+      margin: 10px 0;
+      line-height: 1.5;
+      border-left: 4px solid #007acc;
+    }
+
+    code {
+      background: #f0f0f0;
+      color: #c7254e;
+      font-family: 'Consolas', monospace;
+      font-size: 10pt;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* Gantt Chart */
+    .gantt-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 10pt; }
+    .gantt-table th, .gantt-table td { border: 1px solid #999; padding: 6px 8px; text-align: center; }
+    .gantt-table thead tr { background: #1a1a2e; color: white; }
+    .gantt-table .task-name { text-align: left; font-weight: 600; min-width: 160px; }
+    .gantt-bar { background: #2563eb; height: 18px; border-radius: 3px; }
+    .gantt-bar-green { background: #16a34a; }
+    .gantt-bar-purple { background: #7c3aed; }
+    .gantt-bar-amber { background: #d97706; }
+    .gantt-bar-red { background: #dc2626; }
+
+    /* File tree */
+    .file-tree {
+      background: #1e1e1e;
+      color: #aaa;
+      border-radius: 4px;
+      padding: 14px 16px;
+      font-family: 'Consolas', monospace;
+      font-size: 9.5pt;
+      line-height: 1.7;
+      margin: 10px 0;
+      border-left: 4px solid #007acc;
+    }
+    .file-tree .folder { color: #569cd6; font-weight: bold; }
+    .file-tree .file { color: #d4d4d4; }
+    .file-tree .comment { color: #6a9955; }
+
+    /* Pipeline diagram */
+    .pipeline-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .pipe-item {
+      border: 2px solid #1a1a2e;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 10pt;
+      font-weight: bold;
+      text-align: center;
+      background: #f0f4ff;
+    }
+    .pipe-item.green { background: #f0fdf4; border-color: #16a34a; color: #166534; }
+    .pipe-item.blue { background: #eff6ff; border-color: #2563eb; color: #1e40af; }
+    .pipe-arrow { font-size: 16pt; padding: 0 6px; font-weight: bold; color: #333; }
+
+    /* Info boxes */
+    .note-box {
+      background: #f0f4ff;
+      border-left: 4px solid #2563eb;
+      padding: 10px 14px;
+      margin: 12px 0;
+      font-size: 11pt;
+    }
+
+    /* Page break */
+    .page-break { page-break-before: always; }
+
+    ul li, ol li { margin: 4px 0; text-align: left; }
+
+    .signature-section {
+      margin-top: 60px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .signature-box {
+      text-align: center;
+      width: 40%;
+    }
+
+    .signature-box .line {
+      border-top: 1px solid #000;
+      margin-top: 50px;
+      padding-top: 6px;
+      font-size: 11pt;
+    }
+
+    @media print {
+      .page { padding: 2cm; }
+      .cover-page { min-height: 100vh; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- COVER PAGE -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="cover-page">
+  <div class="university-name">Daffodil International University</div>
+  <div class="department">Department of Computer Science and Engineering</div>
+  <div class="divider"></div>
+
+  <div class="assignment-label">Project Report</div>
+
+  <div class="project-title">Student Management System</div>
+  <div class="course-info">
+    Course Title: Software Development Methodology
+<br>
+    Course Code: CSE-CSE504
+  </div>
+
+  <div style="margin-top:40px; width:100%; text-align:left; padding:0 20px;">
+    <div class="info-box" style="width:100%; border:1.5px solid #000; padding:18px 28px; margin-bottom:20px;">
+      <h4>Submitted By (Group Members)</h4>
+      <table style="width:100%; border-collapse:collapse; font-size:11pt;">
+        <tr style="border-bottom:1px solid #ddd;">
+          <td style="padding:6px 8px; font-weight:600;">1.</td>
+          <td style="padding:6px 8px;">Sahin Alam</td>
+          <td style="padding:6px 8px;">253-25-003</td>
+        </tr>
+        <tr style="border-bottom:1px solid #ddd;">
+          <td style="padding:6px 8px; font-weight:600;">2.</td>
+          <td style="padding:6px 8px;">Md. Rasheduzzaman Elite</td>
+          <td style="padding:6px 8px;">253-25-021</td>
+        </tr>
+        <tr style="border-bottom:1px solid #ddd;">
+          <td style="padding:6px 8px; font-weight:600;">3.</td>
+          <td style="padding:6px 8px;">Md Hafiz Miah</td>
+          <td style="padding:6px 8px;">253-25-012</td>
+        </tr>
+        <tr style="border-bottom:1px solid #ddd;">
+          <td style="padding:6px 8px; font-weight:600;">4.</td>
+          <td style="padding:6px 8px;">Dhiman Sarker</td>
+          <td style="padding:6px 8px;">252-25-011</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px; font-weight:600;">5.</td>
+          <td style="padding:6px 8px;">Kamrul Kader Mehadi Khan</td>
+          <td style="padding:6px 8px;">253-25-013</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-box" style="width:100%; border:1.5px solid #000; padding:18px 28px;">
+      <h4>Submitted To</h4>
+      <p><strong>Name:</strong> Naymul Islam</p>
+      <p><strong>Designation:</strong> Assistant Professor</p>
+      <p><strong>Department:</strong> Department of Computer Science and Engineering</p>
+      <p><strong>University:</strong> Daffodil International University</p>
+    </div>
+  </div>
+
+  <div class="date-section">
+    Date of Submission: April 2026
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- TABLE OF CONTENTS -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="page toc">
+  <h1>Table of Contents</h1>
+  <table>
+    <tr><td>1.</td><td>Introduction</td><td>3</td></tr>
+    <tr><td>2.</td><td>Objectives</td><td>3</td></tr>
+    <tr><td>3.</td><td>Methodology</td><td>4</td></tr>
+    <tr><td>4.</td><td>Tools and Technology</td><td>5</td></tr>
+    <tr><td>5.</td><td>Project Timeline (Gantt Chart)</td><td>6</td></tr>
+    <tr><td>6.</td><td>System Architecture</td><td>7</td></tr>
+    <tr><td>7.</td><td>Project Structure</td><td>7</td></tr>
+    <tr><td>8.</td><td>Database Design</td><td>8</td></tr>
+    <tr><td>9.</td><td>API Endpoints</td><td>9</td></tr>
+    <tr><td>10.</td><td>Frontend Components</td><td>10</td></tr>
+    <tr><td>11.</td><td>Local Development Setup</td><td>11</td></tr>
+    <tr><td>12.</td><td>Docker &amp; Containerization</td><td>12</td></tr>
+    <tr class="sub"><td></td><td>12.1 &nbsp; Backend Dockerfile</td><td>12</td></tr>
+    <tr class="sub"><td></td><td>12.2 &nbsp; Frontend Dockerfile</td><td>12</td></tr>
+    <tr class="sub"><td></td><td>12.3 &nbsp; Docker Compose</td><td>13</td></tr>
+    <tr class="sub"><td></td><td>12.4 &nbsp; Running with Docker</td><td>13</td></tr>
+    <tr><td>13.</td><td>CI/CD Implementation (GitHub Actions)</td><td>14</td></tr>
+    <tr class="sub"><td></td><td>13.1 &nbsp; Pipeline Overview</td><td>14</td></tr>
+    <tr class="sub"><td></td><td>13.2 &nbsp; Workflow Configuration</td><td>14</td></tr>
+    <tr class="sub"><td></td><td>13.3 &nbsp; GitHub Secrets</td><td>15</td></tr>
+    <tr class="sub"><td></td><td>13.4 &nbsp; Pipeline Execution</td><td>16</td></tr>
+    <tr><td>14.</td><td>Deployment (Vercel)</td><td>17</td></tr>
+    <tr><td>15.</td><td>Environment Variables</td><td>17</td></tr>
+    <tr><td>16.</td><td>Features</td><td>18</td></tr>
+    <tr><td>17.</td><td>Conclusion</td><td>19</td></tr>
+    <tr><td>18.</td><td>References</td><td>19</td></tr>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- 1. INTRODUCTION -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="page">
+  <h1>1. Introduction</h1>
+  <p>
+    In modern educational institutions, managing student records manually is time-consuming, error-prone,
+    and inefficient. As the number of students grows, the need for a digital solution becomes essential.
+    A Student Management System provides a centralized platform to store, manage, and access student
+    information in an organized and secure manner.
+  </p>
+  <p>
+    This project presents a <strong>full-stack Student Management System</strong> built using modern
+    web development technologies. The application provides a clean, professional user interface to
+    perform all CRUD (Create, Read, Update, Delete) operations on student records. It features a
+    React-based frontend with Tailwind CSS styling and smooth animations, an Express.js RESTful API
+    backend, and a MongoDB Atlas cloud database for persistent storage.
+  </p>
+  <p>
+    Beyond the core functionality, this project also demonstrates industry-standard practices including
+    <strong>Docker containerization</strong> for consistent deployment environments and a
+    <strong>CI/CD pipeline using GitHub Actions</strong> that automatically builds and deploys the
+    application to Vercel on every code push. This report documents the complete technical
+    implementation, architecture decisions, tools used, and deployment strategy.
+  </p>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- 2. OBJECTIVES -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <h1>2. Objectives</h1>
+
+  <h2>Primary Objectives</h2>
+  <ol>
+    <li>Develop a full-stack web application to manage student records (Add, Edit, Delete, View)</li>
+    <li>Implement a RESTful API backend using Node.js and Express.js</li>
+    <li>Design a modern, responsive frontend using React and Tailwind CSS</li>
+    <li>Use MongoDB Atlas as a cloud-hosted NoSQL database</li>
+  </ol>
+
+  <h2>Secondary Objectives</h2>
+  <ol start="5">
+    <li>Containerize the application using Docker and Docker Compose</li>
+    <li>Implement a CI/CD pipeline using GitHub Actions for automated deployment</li>
+    <li>Deploy both frontend and backend to Vercel cloud platform</li>
+    <li>Implement search, filter, and pagination features for better data management</li>
+    <li>Apply professional UI/UX design with animations and modern typography</li>
+  </ol>
+
+  <h2>Learning Objectives</h2>
+  <ul>
+    <li>Understand the MERN-like stack architecture (MongoDB, Express, React, Node.js)</li>
+    <li>Learn containerization concepts with Docker</li>
+    <li>Gain practical experience with CI/CD automation</li>
+    <li>Practice deploying applications to cloud platforms</li>
+    <li>Understand RESTful API design principles</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- 3. METHODOLOGY -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="page">
+  <h1>3. Methodology</h1>
+  <p>
+    This project was developed following the <strong>Agile methodology</strong> with an incremental approach.
+    The development was divided into distinct phases, each building upon the previous one. Below is the
+    step-by-step methodology followed throughout the project:
+  </p>
+
+  <h2>Phase 1: Planning &amp; Requirement Analysis (Day 1)</h2>
+  <ul>
+    <li>Identified the core requirements: CRUD operations for student records</li>
+    <li>Selected the tech stack: React, Node.js, Express, MongoDB, Tailwind CSS</li>
+    <li>Defined the database schema (student fields, validation rules)</li>
+    <li>Planned the project folder structure (separate frontend and backend directories)</li>
+    <li>Set up the development environment and initialized Git repository</li>
+  </ul>
+
+  <h2>Phase 2: Backend Development (Day 2-3)</h2>
+  <ul>
+    <li>Created the Express.js server with CORS and JSON middleware</li>
+    <li>Designed the Mongoose Student schema with validations</li>
+    <li>Implemented RESTful API endpoints (GET, POST, PUT, DELETE)</li>
+    <li>Added search, filter, and pagination functionality to the GET endpoint</li>
+    <li>Created a global error handler for validation errors, duplicate keys, and invalid IDs</li>
+    <li>Connected to MongoDB Atlas cloud database</li>
+    <li>Tested all API endpoints using Postman/browser</li>
+  </ul>
+
+  <h2>Phase 3: Frontend Development (Day 3-5)</h2>
+  <ul>
+    <li>Set up React project with Vite build tool</li>
+    <li>Configured Tailwind CSS for styling and custom design tokens</li>
+    <li>Built UI components: Navbar, StatsCard, StudentTable, StudentModal, DeleteConfirmModal</li>
+    <li>Integrated Framer Motion for page animations and transitions</li>
+    <li>Created Axios API service for backend communication</li>
+    <li>Implemented state management using React hooks (useState, useEffect, useCallback)</li>
+    <li>Added search bar, status filter, pagination, and toast notifications</li>
+  </ul>
+
+  <h2>Phase 4: Docker &amp; Containerization (Day 5-6)</h2>
+  <ul>
+    <li>Created multi-stage Dockerfile for the backend (Node.js + Alpine)</li>
+    <li>Created multi-stage Dockerfile for the frontend (Node build + Nginx serve)</li>
+    <li>Configured Nginx for API proxying and SPA routing</li>
+    <li>Created docker-compose.yml to orchestrate both services</li>
+    <li>Tested the full application running in Docker containers</li>
+  </ul>
+
+  <h2>Phase 5: CI/CD &amp; Deployment (Day 6-7)</h2>
+  <ul>
+    <li>Created Vercel projects for both frontend and backend</li>
+    <li>Configured Vercel serverless functions for the Express backend</li>
+    <li>Set up GitHub Actions workflow for automated deployment</li>
+    <li>Configured GitHub Secrets for sensitive credentials</li>
+    <li>Tested the full CI/CD pipeline — push triggers build and deploy</li>
+    <li>Verified live deployment on Vercel</li>
+  </ul>
+
+  <h2>Phase 6: Documentation &amp; Testing (Day 7)</h2>
+  <ul>
+    <li>Wrote project README.md for the GitHub repository</li>
+    <li>Prepared this comprehensive project report</li>
+    <li>Performed final end-to-end testing of all features</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- 4. TOOLS AND TECHNOLOGY -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="page">
+  <h1>4. Tools and Technology</h1>
+
+  <h2>4.1 Frontend Technologies</h2>
+  <table class="data-table">
+    <thead><tr><th>Technology</th><th>Version</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>React</td><td>18.3</td><td>JavaScript UI library for building component-based interfaces</td></tr>
+      <tr><td>Vite</td><td>5.3</td><td>Fast build tool and development server</td></tr>
+      <tr><td>Tailwind CSS</td><td>3.4</td><td>Utility-first CSS framework for rapid styling</td></tr>
+      <tr><td>Framer Motion</td><td>11.2</td><td>Animation library for smooth page transitions</td></tr>
+      <tr><td>Axios</td><td>1.7</td><td>HTTP client for making API requests</td></tr>
+      <tr><td>Lucide React</td><td>0.395</td><td>Modern icon library</td></tr>
+      <tr><td>React Hot Toast</td><td>2.4</td><td>Toast notification system</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4.2 Backend Technologies</h2>
+  <table class="data-table">
+    <thead><tr><th>Technology</th><th>Version</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Node.js</td><td>20.x</td><td>JavaScript runtime environment for the server</td></tr>
+      <tr><td>Express.js</td><td>4.19</td><td>Minimal web framework for building REST APIs</td></tr>
+      <tr><td>Mongoose</td><td>8.4</td><td>ODM (Object Data Modeling) library for MongoDB</td></tr>
+      <tr><td>dotenv</td><td>16.4</td><td>Loads environment variables from .env files</td></tr>
+      <tr><td>CORS</td><td>2.8</td><td>Cross-Origin Resource Sharing middleware</td></tr>
+      <tr><td>Nodemon</td><td>3.1</td><td>Auto-restart server during development</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4.3 Database</h2>
+  <table class="data-table">
+    <thead><tr><th>Technology</th><th>Type</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>MongoDB Atlas</td><td>Cloud NoSQL Database</td><td>Stores student data in document format (JSON-like)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4.4 DevOps &amp; Deployment</h2>
+  <table class="data-table">
+    <thead><tr><th>Technology</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Docker</td><td>Containerization of both frontend and backend</td></tr>
+      <tr><td>Docker Compose</td><td>Multi-container orchestration</td></tr>
+      <tr><td>Nginx</td><td>Web server for serving frontend in Docker</td></tr>
+      <tr><td>GitHub Actions</td><td>CI/CD pipeline for automated build and deployment</td></tr>
+      <tr><td>Vercel</td><td>Cloud hosting platform (frontend static + backend serverless)</td></tr>
+      <tr><td>Git / GitHub</td><td>Version control and code repository</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4.5 Development Tools</h2>
+  <table class="data-table">
+    <thead><tr><th>Tool</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Visual Studio Code</td><td>Code editor / IDE</td></tr>
+      <tr><td>Google Chrome DevTools</td><td>Browser debugging and network monitoring</td></tr>
+      <tr><td>Postman / Browser</td><td>API endpoint testing</td></tr>
+      <tr><td>Docker Desktop</td><td>Docker GUI for Windows</td></tr>
+      <tr><td>MongoDB Atlas Dashboard</td><td>Database management and monitoring</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- 5. GANTT CHART -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="page">
+  <h1>5. Project Timeline (Gantt Chart)</h1>
+  <p>
+    The project was completed over a span of <strong>7 days (1 week)</strong>. The following Gantt chart
+    illustrates the timeline of each development phase:
+  </p>
+
+  <table class="gantt-table">
+    <thead>
+      <tr>
+        <th class="task-name">Task / Phase</th>
+        <th>Day 1</th>
+        <th>Day 2</th>
+        <th>Day 3</th>
+        <th>Day 4</th>
+        <th>Day 5</th>
+        <th>Day 6</th>
+        <th>Day 7</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="task-name">Planning &amp; Requirements</td>
+        <td><div class="gantt-bar" style="width:100%"></div></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td class="task-name">Database Design &amp; Setup</td>
+        <td><div class="gantt-bar gantt-bar-purple" style="width:100%"></div></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td class="task-name">Backend API Development</td>
+        <td></td>
+        <td><div class="gantt-bar gantt-bar-green" style="width:100%"></div></td>
+        <td><div class="gantt-bar gantt-bar-green" style="width:100%"></div></td>
+        <td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td class="task-name">Frontend UI Development</td>
+        <td></td><td></td>
+        <td><div class="gantt-bar gantt-bar-amber" style="width:100%"></div></td>
+        <td><div class="gantt-bar gantt-bar-amber" style="width:100%"></div></td>
+        <td><div class="gantt-bar gantt-bar-amber" style="width:100%"></div></td>
+        <td></td><td></td>
+      </tr>
+      <tr>
+        <td class="task-name">Frontend-Backend Integration</td>
+        <td></td><td></td><td></td>
+        <td><div class="gantt-bar" style="width:100%"></div></td>
+        <td><div class="gantt-bar" style="width:100%"></div></td>
+        <td></td><td></td>
+      </tr>
+      <tr>
+        <td class="task-name">Docker Containerization</td>
+        <td></td><td></td><td></td><td></td>
+        <td><div class="gantt-bar gantt-bar-purple" style="width:100%"></div></td>
+        <td><div class="gantt-bar gantt-bar-purple" style="width:100%"></div></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="task-name">CI/CD Pipeline Setup</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td><div class="gantt-bar gantt-bar-red" style="width:100%"></div></td>
+        <td><div class="gantt-bar gantt-bar-red" style="width:100%"></div></td>
+      </tr>
+      <tr>
+        <td class="task-name">Vercel Deployment</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td><div class="gantt-bar gantt-bar-green" style="width:100%"></div></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="task-name">Testing &amp; Bug Fixing</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td><div class="gantt-bar" style="width:100%"></div></td>
+        <td><div class="gantt-bar" style="width:100%"></div></td>
+      </tr>
+      <tr>
+        <td class="task-name">Documentation &amp; Report</td>
+        <td></td><td></td><td></td><td></td><td></td><td></td>
+        <td><div class="gantt-bar gantt-bar-purple" style="width:100%"></div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Time Distribution Summary</h2>
+  <table class="data-table">
+    <thead><tr><th>Phase</th><th>Duration</th><th>Days</th></tr></thead>
+    <tbody>
+      <tr><td>Planning &amp; Database Design</td><td>1 day</td><td>Day 1</td></tr>
+      <tr><td>Backend API Development</td><td>2 days</td><td>Day 2 – 3</td></tr>
+      <tr><td>Frontend UI Development</td><td>3 days</td><td>Day 3 – 5</td></tr>
+      <tr><td>Docker &amp; Containerization</td><td>2 days</td><td>Day 5 – 6</td></tr>
+      <tr><td>CI/CD &amp; Deployment</td><td>2 days</td><td>Day 6 – 7</td></tr>
+      <tr><td>Testing &amp; Documentation</td><td>2 days</td><td>Day 6 – 7</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-box">
+    <strong>Note:</strong> Some phases overlap as tasks were worked on in parallel. For example,
+    frontend-backend integration was done alongside UI development, and testing was continuous
+    throughout the project.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- 6. SYSTEM ARCHITECTURE -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="page">
+  <h1>6. System Architecture</h1>
+  <p>
+    The application follows a standard <strong>3-tier client-server architecture</strong>. The frontend
+    communicates with the backend via RESTful API calls over HTTP, and the backend communicates with
+    the MongoDB Atlas cloud database using Mongoose ODM.
+  </p>
+
+  <h2>Architecture Diagram</h2>
+  <div class="pipeline-box">
+    <div class="pipe-item">User<br><small>Browser</small></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-item blue">React Frontend<br><small>Vite + Tailwind</small></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-item green">Express API<br><small>Node.js Backend</small></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-item" style="background:#fef3c7; border-color:#d97706; color:#92400e;">MongoDB Atlas<br><small>Cloud Database</small></div>
+  </div>
+
+  <table class="data-table">
+    <thead><tr><th>Layer</th><th>Technology</th><th>Responsibility</th></tr></thead>
+    <tbody>
+      <tr><td>Presentation Layer</td><td>React + Tailwind CSS</td><td>User interface, forms, tables, animations, state management</td></tr>
+      <tr><td>Application Layer</td><td>Node.js + Express.js</td><td>REST API, business logic, validation, error handling</td></tr>
+      <tr><td>Data Layer</td><td>MongoDB Atlas + Mongoose</td><td>Data persistence, schema enforcement, indexing</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ─── 7. PROJECT STRUCTURE ─── -->
+  <h1>7. Project Structure</h1>
+
+  <div class="file-tree">
+    <span class="folder">student-management-system/</span><br>
+    ├── <span class="folder">backend/</span>                   <span class="comment"># Node.js + Express API</span><br>
+    │   ├── <span class="folder">src/</span><br>
+    │   │   ├── <span class="folder">controllers/</span><br>
+    │   │   │   └── <span class="file">studentController.js</span>   <span class="comment"># CRUD logic</span><br>
+    │   │   ├── <span class="folder">models/</span><br>
+    │   │   │   └── <span class="file">Student.js</span>             <span class="comment"># Mongoose schema</span><br>
+    │   │   ├── <span class="folder">routes/</span><br>
+    │   │   │   └── <span class="file">studentRoutes.js</span>       <span class="comment"># API route definitions</span><br>
+    │   │   └── <span class="folder">middleware/</span><br>
+    │   │       └── <span class="file">errorHandler.js</span>        <span class="comment"># Global error handler</span><br>
+    │   ├── <span class="file">server.js</span>                  <span class="comment"># App entry point</span><br>
+    │   ├── <span class="file">vercel.json</span>                <span class="comment"># Vercel serverless config</span><br>
+    │   ├── <span class="file">Dockerfile</span>                 <span class="comment"># Docker image build</span><br>
+    │   └── <span class="file">.env</span>                       <span class="comment"># Environment variables</span><br>
+    │<br>
+    ├── <span class="folder">frontend/</span>                  <span class="comment"># React + Vite SPA</span><br>
+    │   ├── <span class="folder">src/</span><br>
+    │   │   ├── <span class="folder">components/</span>            <span class="comment"># React UI components</span><br>
+    │   │   ├── <span class="folder">services/</span>              <span class="comment"># API service layer</span><br>
+    │   │   ├── <span class="file">App.jsx</span>                <span class="comment"># Root component</span><br>
+    │   │   └── <span class="file">main.jsx</span>               <span class="comment"># Entry point</span><br>
+    │   ├── <span class="file">vercel.json</span>                <span class="comment"># SPA routing rewrites</span><br>
+    │   ├── <span class="file">nginx.conf</span>                 <span class="comment"># Nginx config (Docker)</span><br>
+    │   └── <span class="file">Dockerfile</span>                 <span class="comment"># Docker image build</span><br>
+    │<br>
+    ├── <span class="folder">.github/workflows/</span><br>
+    │   └── <span class="file">ci-cd.yml</span>                  <span class="comment"># GitHub Actions CI/CD</span><br>
+    ├── <span class="file">docker-compose.yml</span>             <span class="comment"># Container orchestration</span><br>
+    ├── <span class="file">.gitignore</span><br>
+    └── <span class="file">README.md</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- 8. DATABASE DESIGN -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="page">
+  <h1>8. Database Design</h1>
+  <p>
+    The application uses <strong>MongoDB Atlas</strong>, a cloud-hosted NoSQL document database.
+    The database name is <code>student-management-system</code> and contains a single collection called
+    <code>students</code>.
+  </p>
+
+  <h2>Student Schema</h2>
+  <table class="data-table">
+    <thead><tr><th>Field</th><th>Data Type</th><th>Required</th><th>Constraints / Default</th></tr></thead>
+    <tbody>
+      <tr><td>firstName</td><td>String</td><td>Yes</td><td>Max 50 characters, trimmed</td></tr>
+      <tr><td>lastName</td><td>String</td><td>Yes</td><td>Max 50 characters, trimmed</td></tr>
+      <tr><td>email</td><td>String</td><td>Yes</td><td>Unique, lowercase, regex validated</td></tr>
+      <tr><td>phone</td><td>String</td><td>Yes</td><td>Trimmed</td></tr>
+      <tr><td>age</td><td>Number</td><td>Yes</td><td>Min: 5, Max: 100</td></tr>
+      <tr><td>course</td><td>String</td><td>Yes</td><td>Trimmed</td></tr>
+      <tr><td>grade</td><td>String (Enum)</td><td>No</td><td>Values: A, B, C, D, F, N/A. Default: N/A</td></tr>
+      <tr><td>address</td><td>String</td><td>No</td><td>Default: empty string</td></tr>
+      <tr><td>enrollmentDate</td><td>Date</td><td>No</td><td>Default: current date</td></tr>
+      <tr><td>status</td><td>String (Enum)</td><td>No</td><td>Values: Active, Inactive, Graduated, Suspended. Default: Active</td></tr>
+      <tr><td>createdAt</td><td>Date</td><td>Auto</td><td>Mongoose timestamp (auto-generated)</td></tr>
+      <tr><td>updatedAt</td><td>Date</td><td>Auto</td><td>Mongoose timestamp (auto-updated)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Sample Document</h2>
+  <pre>{
+  "_id": "665f1a2b3c4d5e6f7a8b9c0d",
+  "firstName": "Md Rasheduzzaman",
+  "lastName": "Elite",
+  "email": "rashed@example.com",
+  "phone": "+880 1712 345678",
+  "age": 22,
+  "course": "Computer Science and Engineering",
+  "grade": "A",
+  "status": "Active",
+  "address": "Dhaka, Bangladesh",
+  "enrollmentDate": "2026-01-15T00:00:00.000Z",
+  "createdAt": "2026-03-28T18:30:00.000Z",
+  "updatedAt": "2026-03-28T18:30:00.000Z"
+}</pre>
+
+  <!-- ─── 9. API ENDPOINTS ─── -->
+  <h1>9. API Endpoints</h1>
+  <p>Base URL: <code>https://edumanage-backend.vercel.app</code></p>
+
+  <table class="data-table">
+    <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th><th>Parameters</th></tr></thead>
+    <tbody>
+      <tr><td><strong style="color:green;">GET</strong></td><td><code>/health</code></td><td>Health check endpoint</td><td>—</td></tr>
+      <tr><td><strong style="color:green;">GET</strong></td><td><code>/api/students</code></td><td>Get all students (paginated)</td><td>?search, ?status, ?page, ?limit</td></tr>
+      <tr><td><strong style="color:green;">GET</strong></td><td><code>/api/students/stats</code></td><td>Get dashboard statistics</td><td>—</td></tr>
+      <tr><td><strong style="color:green;">GET</strong></td><td><code>/api/students/:id</code></td><td>Get a single student by ID</td><td>:id (path param)</td></tr>
+      <tr><td><strong style="color:blue;">POST</strong></td><td><code>/api/students</code></td><td>Create a new student</td><td>JSON body</td></tr>
+      <tr><td><strong style="color:orange;">PUT</strong></td><td><code>/api/students/:id</code></td><td>Update an existing student</td><td>:id + JSON body</td></tr>
+      <tr><td><strong style="color:red;">DELETE</strong></td><td><code>/api/students/:id</code></td><td>Delete a student</td><td>:id (path param)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Error Handling</h2>
+  <table class="data-table">
+    <thead><tr><th>Error Type</th><th>HTTP Status</th><th>Example Message</th></tr></thead>
+    <tbody>
+      <tr><td>Validation Error</td><td>400</td><td>"First name is required, Email is required"</td></tr>
+      <tr><td>Duplicate Key</td><td>400</td><td>"A student with this email already exists"</td></tr>
+      <tr><td>Invalid ID</td><td>400</td><td>"Invalid ID format"</td></tr>
+      <tr><td>Not Found</td><td>404</td><td>"Student not found"</td></tr>
+      <tr><td>Server Error</td><td>500</td><td>"Internal Server Error"</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- 10. FRONTEND COMPONENTS -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="page">
+  <h1>10. Frontend Components</h1>
+
+  <table class="data-table">
+    <thead><tr><th>Component</th><th>File</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Navbar</td><td>Navbar.jsx</td><td>Top navigation with gradient logo and live status badge</td></tr>
+      <tr><td>StatsCard</td><td>StatsCard.jsx</td><td>Animated dashboard cards (Total, Active, Inactive, Graduated)</td></tr>
+      <tr><td>StudentTable</td><td>StudentTable.jsx</td><td>Data table with hover actions, pagination, avatars with initials</td></tr>
+      <tr><td>StudentModal</td><td>StudentModal.jsx</td><td>Add/Edit form modal with validation and icon-enhanced fields</td></tr>
+      <tr><td>DeleteConfirmModal</td><td>DeleteConfirmModal.jsx</td><td>Confirmation dialog before deleting a student</td></tr>
+      <tr><td>App</td><td>App.jsx</td><td>Root component — manages state, API calls, search, filter, pagination</td></tr>
+      <tr><td>API Service</td><td>services/api.js</td><td>Axios instance with interceptors and all student API methods</td></tr>
+    </tbody>
+  </table>
+
+  <h2>UI Design Principles</h2>
+  <ul>
+    <li><strong>Light white background</strong> with subtle gradients (slate-50 → primary-50)</li>
+    <li><strong>Modern typography</strong> using Inter and Plus Jakarta Sans font families</li>
+    <li><strong>Smooth animations</strong> via Framer Motion — fade-in, slide-up, scale effects</li>
+    <li><strong>Responsive design</strong> — works on both desktop and mobile screens</li>
+    <li><strong>Consistent color scheme</strong> — Indigo primary, Emerald for success, Red for danger</li>
+    <li><strong>Hover-reveal actions</strong> — Edit/Delete buttons appear only on row hover</li>
+    <li><strong>Toast notifications</strong> — real-time feedback on all CRUD operations</li>
+  </ul>
+
+  <!-- ─── 11. LOCAL SETUP ─── -->
+  <h1>11. Local Development Setup</h1>
+
+  <h2>Prerequisites</h2>
+  <ul>
+    <li>Node.js v20+ and npm v9+</li>
+    <li>MongoDB Atlas account (free tier)</li>
+    <li>Git installed</li>
+  </ul>
+
+  <h2>Step 1: Clone Repository</h2>
+  <pre>git clone https://github.com/elite1122/student-management-system.git
+cd student-management-system</pre>
+
+  <h2>Step 2: Backend Setup</h2>
+  <pre>cd backend
+cp .env.example .env        # Add your MONGO_URI to .env
+npm install                 # Install dependencies
+npm run dev                 # Start server on http://localhost:5000</pre>
+
+  <h2>Step 3: Frontend Setup</h2>
+  <pre>cd frontend
+cp .env.example .env        # VITE_API_URL=http://localhost:5000/api
+npm install                 # Install dependencies
+npm run dev                 # Start app on http://localhost:3000</pre>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- 12. DOCKER -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="page">
+  <h1>12. Docker &amp; Containerization</h1>
+  <p>
+    Docker packages the application into isolated containers so it runs identically on any machine,
+    regardless of the operating system or installed software. This project uses multi-stage Docker
+    builds for optimized image sizes and Docker Compose for orchestrating multiple services.
+  </p>
+
+  <h2>12.1 Backend Dockerfile</h2>
+  <p>Uses a multi-stage build: installs production dependencies in a builder stage, then copies them to a lean Alpine image. Runs as a non-root user for security.</p>
+  <pre>FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+
+FROM node:20-alpine
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+WORKDIR /app
+COPY --from=builder /app/node_modules ./node_modules
+COPY . .
+USER appuser
+EXPOSE 5000
+HEALTHCHECK CMD wget -qO- http://localhost:5000/health || exit 1
+CMD ["node", "server.js"]</pre>
+
+  <h2>12.2 Frontend Dockerfile</h2>
+  <p>Builds the React application with Vite, then serves the static files using Nginx web server.</p>
+  <pre>FROM node:20-alpine AS builder
+ARG VITE_API_URL=/api
+ENV VITE_API_URL=$VITE_API_URL
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]</pre>
+
+  <h2>12.3 Docker Compose</h2>
+  <p>Orchestrates both containers on a shared network. The frontend Nginx reverse-proxies <code>/api</code> requests to the backend container.</p>
+  <pre>services:
+  backend:
+    build: ./backend
+    container_name: sms-backend
+    ports: ["5000:5000"]
+    environment:
+      - MONGO_URI=${MONGO_URI}
+
+  frontend:
+    build: ./frontend
+    container_name: sms-frontend
+    ports: ["80:80"]
+    depends_on:
+      backend:
+        condition: service_healthy</pre>
+
+  <h2>12.4 Running with Docker</h2>
+  <table class="data-table">
+    <thead><tr><th>Step</th><th>Command</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><code>docker compose build</code></td><td>Build both Docker images</td></tr>
+      <tr><td>2</td><td><code>docker compose up -d</code></td><td>Start containers in background</td></tr>
+      <tr><td>3</td><td>Open <code>http://localhost</code></td><td>Access the application</td></tr>
+      <tr><td>4</td><td><code>docker compose logs -f</code></td><td>View live logs</td></tr>
+      <tr><td>5</td><td><code>docker compose down</code></td><td>Stop and remove containers</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- 13. CI/CD IMPLEMENTATION -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="page">
+  <h1>13. CI/CD Implementation (GitHub Actions)</h1>
+  <p>
+    <strong>CI/CD (Continuous Integration / Continuous Deployment)</strong> automates the process of
+    building, testing, and deploying the application. Every time code is pushed to the <code>main</code>
+    branch on GitHub, the pipeline automatically deploys both the frontend and backend to Vercel
+    without any manual intervention.
+  </p>
+
+  <h2>13.1 Pipeline Overview</h2>
+  <div class="pipeline-box">
+    <div class="pipe-item">git push<br><small>to main</small></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-item">GitHub Actions<br><small>Triggered</small></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-item green">Job 1<br><small>Deploy Backend</small></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-item blue">Job 2<br><small>Build + Deploy Frontend</small></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-item green">✅ Live<br><small>on Vercel</small></div>
+  </div>
+
+  <h2>13.2 Workflow Configuration</h2>
+  <p>The CI/CD pipeline is defined in <code>.github/workflows/ci-cd.yml</code>:</p>
+
+  <pre>name: CI/CD — Build & Deploy to Vercel
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy-backend:
+    name: Deploy Backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install -g vercel@latest
+      - name: Deploy Backend to Vercel
+        run: vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_BACKEND_PROJECT_ID }}
+
+  deploy-frontend:
+    name: Deploy Frontend
+    runs-on: ubuntu-latest
+    needs: deploy-backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+        working-directory: ./frontend
+      - run: npm run build
+        working-directory: ./frontend
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+      - run: npm install -g vercel@latest
+      - name: Deploy Frontend to Vercel
+        run: vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_FRONTEND_PROJECT_ID }}</pre>
+
+  <h2>13.3 GitHub Secrets Configuration</h2>
+  <p>Sensitive credentials are stored as encrypted <strong>GitHub Secrets</strong> (Settings → Secrets and variables → Actions):</p>
+
+  <table class="data-table">
+    <thead><tr><th>Secret Name</th><th>Description</th><th>Where to Find</th></tr></thead>
+    <tbody>
+      <tr><td><code>VERCEL_TOKEN</code></td><td>Vercel authentication token</td><td>Vercel → Account Settings → Tokens → Create</td></tr>
+      <tr><td><code>VERCEL_ORG_ID</code></td><td>Vercel team / organization ID</td><td>Vercel → Team Settings → General → Team ID</td></tr>
+      <tr><td><code>VERCEL_BACKEND_PROJECT_ID</code></td><td>Backend project identifier</td><td>Backend Vercel project → Settings → General</td></tr>
+      <tr><td><code>VERCEL_FRONTEND_PROJECT_ID</code></td><td>Frontend project identifier</td><td>Frontend Vercel project → Settings → General</td></tr>
+      <tr><td><code>VITE_API_URL</code></td><td>Backend API URL for build time</td><td>https://edumanage-backend.vercel.app/api</td></tr>
+      <tr><td><code>MONGO_URI</code></td><td>MongoDB Atlas connection string</td><td>Atlas → Connect → Drivers → Copy URI</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="page">
+  <h2>13.4 Pipeline Execution</h2>
+  <p>When the pipeline runs successfully, the GitHub Actions tab shows:</p>
+
+  <table class="data-table">
+    <thead><tr><th>Job</th><th>Steps</th><th>Duration</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Deploy Backend</strong></td>
+        <td>Checkout → Setup Node → Install Vercel CLI → Deploy to Vercel</td>
+        <td>~40 seconds</td>
+        <td>✅ Success</td>
+      </tr>
+      <tr>
+        <td><strong>Deploy Frontend</strong></td>
+        <td>Checkout → Setup Node → npm ci → Build → Install Vercel CLI → Deploy</td>
+        <td>~38 seconds</td>
+        <td>✅ Success</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Key CI/CD Concepts Demonstrated</h3>
+  <table class="data-table">
+    <thead><tr><th>Concept</th><th>Implementation</th></tr></thead>
+    <tbody>
+      <tr><td>Continuous Integration</td><td>Automatic build triggered on every push to main</td></tr>
+      <tr><td>Continuous Deployment</td><td>Automatic deployment to Vercel production</td></tr>
+      <tr><td>Job Dependencies</td><td>Frontend deploys only after backend succeeds (<code>needs: deploy-backend</code>)</td></tr>
+      <tr><td>Secret Management</td><td>All credentials stored in GitHub encrypted secrets</td></tr>
+      <tr><td>Environment Injection</td><td>VITE_API_URL injected at build time as env variable</td></tr>
+      <tr><td>Infrastructure as Code</td><td>Entire pipeline defined in YAML (<code>ci-cd.yml</code>)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ─── 14. DEPLOYMENT ─── -->
+  <h1>14. Deployment (Vercel)</h1>
+
+  <h2>Backend — Vercel Serverless Functions</h2>
+  <p>
+    The Express.js backend runs as a <strong>Vercel Serverless Function</strong>. The <code>vercel.json</code>
+    routes all requests to <code>server.js</code>. MongoDB connections are cached between function
+    invocations for performance optimization.
+  </p>
+
+  <h2>Frontend — Vercel Static Hosting</h2>
+  <p>
+    The React frontend is built by Vite into static files (HTML, CSS, JS) and deployed to Vercel's
+    global CDN. The <code>vercel.json</code> rewrite ensures all routes serve <code>index.html</code>.
+  </p>
+
+  <h2>Live URLs</h2>
+  <table class="data-table">
+    <thead><tr><th>Service</th><th>URL</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Frontend</td><td>https://student-management-system.vercel.app</td><td>✅ Live</td></tr>
+      <tr><td>Backend API</td><td>https://edumanage-backend.vercel.app</td><td>✅ Live</td></tr>
+      <tr><td>Health Check</td><td>https://edumanage-backend.vercel.app/health</td><td>✅ 200 OK</td></tr>
+      <tr><td>GitHub Repository</td><td>https://github.com/elite1122/student-management-system</td><td>✅ Public</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- 15. ENV VARS -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="page">
+  <h1>15. Environment Variables</h1>
+
+  <h2>Backend (.env)</h2>
+  <table class="data-table">
+    <thead><tr><th>Variable</th><th>Description</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><code>MONGO_URI</code></td><td>MongoDB connection string</td><td>mongodb+srv://user:pass@cluster.mongodb.net/db</td></tr>
+      <tr><td><code>PORT</code></td><td>Server port (local dev)</td><td>5000</td></tr>
+      <tr><td><code>NODE_ENV</code></td><td>Environment mode</td><td>development / production</td></tr>
+      <tr><td><code>FRONTEND_URL</code></td><td>CORS allowed origin</td><td>https://frontend.vercel.app</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Frontend (.env)</h2>
+  <table class="data-table">
+    <thead><tr><th>Variable</th><th>Description</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><code>VITE_API_URL</code></td><td>Backend API base URL</td><td>http://localhost:5000/api</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-box">
+    <strong>Security Note:</strong> The <code>.env</code> files are excluded from Git via <code>.gitignore</code>.
+    In production, environment variables are configured through Vercel dashboard and GitHub Secrets.
+  </div>
+
+  <!-- ─── 16. FEATURES ─── -->
+  <h1>16. Features</h1>
+
+  <h2>Core Features</h2>
+  <table class="data-table">
+    <thead><tr><th>#</th><th>Feature</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Add Student</td><td>Form modal with validation — add new student records</td></tr>
+      <tr><td>2</td><td>Edit Student</td><td>Pre-filled form modal to update existing records</td></tr>
+      <tr><td>3</td><td>Delete Student</td><td>Confirmation dialog before permanent deletion</td></tr>
+      <tr><td>4</td><td>View All Students</td><td>Paginated table with all student records</td></tr>
+      <tr><td>5</td><td>Search</td><td>Search by name, email, or course</td></tr>
+      <tr><td>6</td><td>Filter</td><td>Filter by status (Active, Inactive, Graduated, Suspended)</td></tr>
+      <tr><td>7</td><td>Dashboard Stats</td><td>Real-time count of Total, Active, Inactive, Graduated</td></tr>
+      <tr><td>8</td><td>Pagination</td><td>Page-based navigation with 8 students per page</td></tr>
+      <tr><td>9</td><td>Animations</td><td>Smooth transitions using Framer Motion</td></tr>
+      <tr><td>10</td><td>Toast Notifications</td><td>Success/Error feedback for all operations</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Non-Functional Features</h2>
+  <table class="data-table">
+    <thead><tr><th>Feature</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Responsive Design</td><td>Works on desktop, tablet, and mobile screens</td></tr>
+      <tr><td>Error Handling</td><td>Global backend error handler + frontend toast messages</td></tr>
+      <tr><td>Security</td><td>CORS configuration, non-root Docker user, env secrets</td></tr>
+      <tr><td>Performance</td><td>Cached DB connections, multi-stage Docker builds, CDN deployment</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- 17. CONCLUSION -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="page">
+  <h1>17. Conclusion</h1>
+  <p>
+    The Student Management System project successfully demonstrates the development of a complete
+    full-stack web application using modern tools and technologies. The project covers all the key
+    aspects of contemporary web development:
+  </p>
+
+  <ul>
+    <li><strong>Frontend Development</strong> — A responsive, animated UI built with React and Tailwind CSS</li>
+    <li><strong>Backend Development</strong> — A RESTful API with Express.js, including validation and error handling</li>
+    <li><strong>Database</strong> — Cloud-hosted MongoDB Atlas with Mongoose ODM for schema enforcement</li>
+    <li><strong>Containerization</strong> — Docker and Docker Compose for consistent, reproducible environments</li>
+    <li><strong>CI/CD</strong> — GitHub Actions pipeline for automated build and deployment to Vercel</li>
+    <li><strong>Cloud Deployment</strong> — Both frontend and backend deployed and accessible online</li>
+  </ul>
+
+  <p>
+    Through this project, practical experience was gained in full-stack architecture, RESTful API design,
+    containerization, CI/CD automation, and cloud deployment — skills that are highly relevant
+    in the software industry.
+  </p>
+
+  <!-- ─── 18. REFERENCES ─── -->
+  <h1>18. References</h1>
+  <ol>
+    <li>React Documentation — https://react.dev</li>
+    <li>Express.js Documentation — https://expressjs.com</li>
+    <li>MongoDB Documentation — https://www.mongodb.com/docs</li>
+    <li>Mongoose Documentation — https://mongoosejs.com/docs</li>
+    <li>Tailwind CSS Documentation — https://tailwindcss.com/docs</li>
+    <li>Framer Motion Documentation — https://www.framer.com/motion</li>
+    <li>Docker Documentation — https://docs.docker.com</li>
+    <li>GitHub Actions Documentation — https://docs.github.com/en/actions</li>
+    <li>Vercel Documentation — https://vercel.com/docs</li>
+    <li>Vite Documentation — https://vitejs.dev</li>
+  </ol>
+
+  <br><br>
+
+  <div style="text-align:center; margin-top:40px; color:#999; font-size:10pt; border-top:1px solid #ddd; padding-top:12px;">
+    Student Management System &nbsp;|&nbsp; Project Report &nbsp;|&nbsp; April 2026<br>
+    GitHub: https://github.com/elite1122/student-management-system
+  </div>
+</div>
+
+</body>
+</html>

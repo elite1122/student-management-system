@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Management System - Documentation</title>
+  <style>
+    body {
+      font-family: 'Calibri', 'Arial', sans-serif;
+      font-size: 11pt;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: 21cm;
+      min-height: 29.7cm;
+      margin: 0 auto;
+      padding: 2.5cm 2.5cm 2cm 2.5cm;
+      box-sizing: border-box;
+    }
+
+    /* Cover Page */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 29.7cm;
+      text-align: center;
+      background: #ffffff;
+      page-break-after: always;
+    }
+
+    .cover-badge {
+      background: linear-gradient(135deg, #6366f1, #4338ca);
+      color: white;
+      border-radius: 16px;
+      width: 90px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      margin: 0 auto 28px auto;
+    }
+
+    .cover h1 {
+      font-size: 28pt;
+      font-weight: 700;
+      color: #1e1b4b;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .cover h2 {
+      font-size: 14pt;
+      font-weight: 400;
+      color: #6366f1;
+      margin: 0 0 40px 0;
+      border: none;
+    }
+
+    .cover-divider {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #6366f1, #818cf8);
+      border-radius: 2px;
+      margin: 0 auto 40px auto;
+    }
+
+    .cover-meta {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 28px 48px;
+      margin-bottom: 48px;
+    }
+
+    .cover-meta table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .cover-meta td {
+      padding: 6px 16px;
+      font-size: 11pt;
+      text-align: left;
+    }
+
+    .cover-meta td:first-child {
+      font-weight: 600;
+      color: #475569;
+      width: 140px;
+    }
+
+    .cover-meta td:last-child {
+      color: #1e293b;
+    }
+
+    .cover-stack {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .badge {
+      background: #eef2ff;
+      color: #4338ca;
+      border: 1px solid #c7d2fe;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 10pt;
+      font-weight: 600;
+    }
+
+    .badge.green  { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
+    .badge.amber  { background: #fffbeb; color: #92400e; border-color: #fde68a; }
+    .badge.purple { background: #faf5ff; color: #6b21a8; border-color: #e9d5ff; }
+    .badge.slate  { background: #f8fafc; color: #334155; border-color: #cbd5e1; }
+
+    /* Table of Contents */
+    .toc-page { page-break-after: always; }
+    .toc h2 { color: #1e1b4b; font-size: 18pt; border-bottom: 2px solid #6366f1; padding-bottom: 8px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { padding: 4px 0; font-size: 11pt; color: #334155; }
+    .toc li a { color: #4338ca; text-decoration: none; }
+    .toc .toc-sub { padding-left: 24px; list-style-type: none; }
+    .toc .toc-sub li { font-size: 10.5pt; color: #64748b; }
+
+    /* Content */
+    h1 { font-size: 20pt; color: #1e1b4b; border-bottom: 2px solid #6366f1; padding-bottom: 8px; margin-top: 32px; }
+    h2 { font-size: 14pt; color: #312e81; margin-top: 24px; margin-bottom: 10px; }
+    h3 { font-size: 12pt; color: #4338ca; margin-top: 18px; margin-bottom: 8px; }
+
+    p { margin: 8px 0; color: #334155; }
+
+    /* Info Box */
+    .info-box {
+      background: #eef2ff;
+      border-left: 4px solid #6366f1;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 14px 0;
+      color: #312e81;
+      font-size: 10.5pt;
+    }
+
+    .success-box {
+      background: #f0fdf4;
+      border-left: 4px solid #22c55e;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 14px 0;
+      color: #166534;
+      font-size: 10.5pt;
+    }
+
+    .warning-box {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 14px 0;
+      color: #92400e;
+      font-size: 10.5pt;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 10.5pt;
+    }
+
+    thead tr {
+      background: #6366f1;
+      color: white;
+    }
+
+    thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) { background: #f8fafc; }
+    tbody tr:hover { background: #eef2ff; }
+
+    tbody td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+
+    /* Code */
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 16px 18px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 9.5pt;
+      overflow-x: auto;
+      margin: 12px 0;
+      line-height: 1.5;
+    }
+
+    code {
+      background: #f1f5f9;
+      color: #4338ca;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 9.5pt;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* File tree */
+    .file-tree {
+      background: #1e293b;
+      color: #94a3b8;
+      border-radius: 8px;
+      padding: 16px 18px;
+      font-family: 'Consolas', monospace;
+      font-size: 9.5pt;
+      line-height: 1.7;
+      margin: 12px 0;
+    }
+
+    .file-tree .folder { color: #818cf8; font-weight: bold; }
+    .file-tree .file   { color: #e2e8f0; }
+    .file-tree .comment{ color: #64748b; }
+
+    /* Steps */
+    .step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin: 12px 0;
+    }
+
+    .step-num {
+      background: #6366f1;
+      color: white;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      min-width: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10pt;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .step-content { flex: 1; }
+    .step-content strong { color: #1e293b; }
+
+    /* Pipeline */
+    .pipeline {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 16px 0;
+      flex-wrap: wrap;
+    }
+
+    .pipe-box {
+      background: #eef2ff;
+      border: 2px solid #6366f1;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 10pt;
+      font-weight: 600;
+      color: #4338ca;
+      text-align: center;
+    }
+
+    .pipe-arrow {
+      font-size: 18pt;
+      color: #6366f1;
+      padding: 0 8px;
+      font-weight: bold;
+    }
+
+    /* Page break */
+    .page-break { page-break-before: always; }
+
+    /* Footer */
+    .doc-footer {
+      margin-top: 48px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 9pt;
+    }
+
+    ul li { color: #334155; margin: 4px 0; }
+    ol li { color: #334155; margin: 4px 0; }
+
+    @media print {
+      .page { padding: 2cm; }
+      .cover { min-height: 100vh; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COVER PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-badge">🎓</div>
+  <h1>Student Management System</h1>
+  <h2>Technical Documentation</h2>
+  <div class="cover-divider"></div>
+
+  <div class="cover-meta">
+    <table>
+      <tr><td>Project</td><td>Student Management System</td></tr>
+      <tr><td>Version</td><td>1.0.0</td></tr>
+      <tr><td>Date</td><td>April 2026</td></tr>
+      <tr><td>Author</td><td>Md Rasheduzzaman</td></tr>
+      <tr><td>GitHub</td><td>github.com/elite1122/student-management-system</td></tr>
+      <tr><td>Backend URL</td><td>https://edumanage-backend.vercel.app</td></tr>
+      <tr><td>Frontend URL</td><td>https://student-management-system.vercel.app</td></tr>
+    </table>
+  </div>
+
+  <div class="cover-stack">
+    <span class="badge">React 18</span>
+    <span class="badge">Tailwind CSS</span>
+    <span class="badge green">Node.js</span>
+    <span class="badge green">Express.js</span>
+    <span class="badge amber">MongoDB Atlas</span>
+    <span class="badge purple">Docker</span>
+    <span class="badge slate">GitHub Actions</span>
+    <span class="badge">Vercel</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TABLE OF CONTENTS -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page toc-page">
+  <div class="toc">
+    <h2>Table of Contents</h2>
+    <ol>
+      <li><a href="#overview">Project Overview</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#techstack">Tech Stack</a></li>
+      <li><a href="#structure">Project Structure</a></li>
+      <li><a href="#architecture">System Architecture</a></li>
+      <li><a href="#database">Database Design</a></li>
+      <li><a href="#api">API Endpoints</a></li>
+      <li><a href="#frontend">Frontend Components</a></li>
+      <li><a href="#local">Local Development Setup</a>
+        <ul class="toc-sub">
+          <li>Prerequisites</li>
+          <li>Backend Setup</li>
+          <li>Frontend Setup</li>
+        </ul>
+      </li>
+      <li><a href="#docker">Docker & Containerization</a>
+        <ul class="toc-sub">
+          <li>Dockerfile — Backend</li>
+          <li>Dockerfile — Frontend</li>
+          <li>Docker Compose</li>
+          <li>Running with Docker</li>
+        </ul>
+      </li>
+      <li><a href="#cicd">CI/CD Pipeline</a>
+        <ul class="toc-sub">
+          <li>GitHub Actions Workflow</li>
+          <li>GitHub Secrets</li>
+          <li>Pipeline Flow</li>
+        </ul>
+      </li>
+      <li><a href="#deployment">Deployment (Vercel)</a></li>
+      <li><a href="#env">Environment Variables</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 1: OVERVIEW -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page">
+  <h1 id="overview">1. Project Overview</h1>
+  <p>
+    The <strong>Student Management System</strong> is a full-stack web application that allows
+    administrators to manage student records efficiently. It provides a clean, modern interface
+    to perform all CRUD (Create, Read, Update, Delete) operations on student data, backed by a
+    RESTful API connected to a cloud-hosted MongoDB database.
+  </p>
+  <p>
+    The system is fully containerized using Docker and features an automated CI/CD pipeline
+    powered by GitHub Actions that deploys both the frontend and backend to Vercel on every
+    push to the main branch.
+  </p>
+
+  <div class="info-box">
+    <strong>Purpose:</strong> Provide a centralized system to add, update, delete, and view student
+    records with a professional, responsive UI and scalable backend architecture.
+  </div>
+
+  <!-- ─── SECTION 2: FEATURES ─── -->
+  <h1 id="features">2. Features</h1>
+
+  <h2>Core Functionality</h2>
+  <ul>
+    <li>Add new students with full profile information</li>
+    <li>Edit existing student records</li>
+    <li>Delete students with a confirmation dialog</li>
+    <li>View all students in a sortable, paginated table</li>
+    <li>Search students by name, email, or course</li>
+    <li>Filter students by status (Active, Inactive, Graduated, Suspended)</li>
+  </ul>
+
+  <h2>Dashboard</h2>
+  <ul>
+    <li>Real-time stats cards: Total, Active, Inactive, Graduated students</li>
+    <li>Pagination with page navigation</li>
+    <li>Live status indicator</li>
+  </ul>
+
+  <h2>UI / UX</h2>
+  <ul>
+    <li>Professional, light-themed design with modern typography</li>
+    <li>Smooth animations powered by Framer Motion</li>
+    <li>Fully responsive layout (mobile & desktop)</li>
+    <li>Toast notifications for all actions (success/error)</li>
+    <li>Hover-reveal action buttons in the table</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 3: TECH STACK -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page">
+  <h1 id="techstack">3. Tech Stack</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Technology</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Frontend</td><td>React 18 + Vite</td><td>UI framework and build tool</td></tr>
+      <tr><td>Styling</td><td>Tailwind CSS v3</td><td>Utility-first CSS styling</td></tr>
+      <tr><td>Animation</td><td>Framer Motion</td><td>UI transitions and animations</td></tr>
+      <tr><td>HTTP Client</td><td>Axios</td><td>API calls from frontend</td></tr>
+      <tr><td>Icons</td><td>Lucide React</td><td>Icon library</td></tr>
+      <tr><td>Notifications</td><td>React Hot Toast</td><td>Toast messages</td></tr>
+      <tr><td>Backend</td><td>Node.js + Express.js</td><td>REST API server</td></tr>
+      <tr><td>ODM</td><td>Mongoose</td><td>MongoDB object modeling</td></tr>
+      <tr><td>Database</td><td>MongoDB Atlas</td><td>Cloud-hosted NoSQL database</td></tr>
+      <tr><td>Web Server</td><td>Nginx</td><td>Serves frontend in Docker</td></tr>
+      <tr><td>Containerization</td><td>Docker + Docker Compose</td><td>Container orchestration</td></tr>
+      <tr><td>CI/CD</td><td>GitHub Actions</td><td>Automated build & deploy pipeline</td></tr>
+      <tr><td>Hosting</td><td>Vercel</td><td>Frontend & Backend deployment</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ─── SECTION 4: STRUCTURE ─── -->
+  <h1 id="structure">4. Project Structure</h1>
+
+  <div class="file-tree">
+    <span class="folder">student-management-system/</span><br>
+    ├── <span class="folder">backend/</span>                   <span class="comment"># Node.js + Express API</span><br>
+    │   ├── <span class="folder">src/</span><br>
+    │   │   ├── <span class="folder">controllers/</span><br>
+    │   │   │   └── <span class="file">studentController.js</span>   <span class="comment"># CRUD logic</span><br>
+    │   │   ├── <span class="folder">models/</span><br>
+    │   │   │   └── <span class="file">Student.js</span>             <span class="comment"># Mongoose schema</span><br>
+    │   │   ├── <span class="folder">routes/</span><br>
+    │   │   │   └── <span class="file">studentRoutes.js</span>       <span class="comment"># API route definitions</span><br>
+    │   │   └── <span class="folder">middleware/</span><br>
+    │   │       └── <span class="file">errorHandler.js</span>        <span class="comment"># Global error handler</span><br>
+    │   ├── <span class="file">server.js</span>                  <span class="comment"># App entry point</span><br>
+    │   ├── <span class="file">vercel.json</span>                <span class="comment"># Vercel serverless config</span><br>
+    │   ├── <span class="file">Dockerfile</span><br>
+    │   └── <span class="file">.env</span>                       <span class="comment"># Environment variables</span><br>
+    │<br>
+    ├── <span class="folder">frontend/</span>                  <span class="comment"># React + Vite SPA</span><br>
+    │   ├── <span class="folder">src/</span><br>
+    │   │   ├── <span class="folder">components/</span><br>
+    │   │   │   ├── <span class="file">Navbar.jsx</span><br>
+    │   │   │   ├── <span class="file">StatsCard.jsx</span><br>
+    │   │   │   ├── <span class="file">StudentTable.jsx</span><br>
+    │   │   │   ├── <span class="file">StudentModal.jsx</span>       <span class="comment"># Add/Edit form</span><br>
+    │   │   │   └── <span class="file">DeleteConfirmModal.jsx</span><br>
+    │   │   ├── <span class="folder">services/</span><br>
+    │   │   │   └── <span class="file">api.js</span>                 <span class="comment"># Axios API calls</span><br>
+    │   │   ├── <span class="file">App.jsx</span><br>
+    │   │   └── <span class="file">main.jsx</span><br>
+    │   ├── <span class="file">vercel.json</span>                <span class="comment"># SPA routing rewrites</span><br>
+    │   ├── <span class="file">nginx.conf</span>                 <span class="comment"># Nginx config for Docker</span><br>
+    │   ├── <span class="file">Dockerfile</span><br>
+    │   └── <span class="file">.env</span><br>
+    │<br>
+    ├── <span class="folder">.github/workflows/</span><br>
+    │   └── <span class="file">ci-cd.yml</span>                  <span class="comment"># GitHub Actions pipeline</span><br>
+    ├── <span class="file">docker-compose.yml</span><br>
+    ├── <span class="file">.gitignore</span><br>
+    └── <span class="file">README.md</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 5: ARCHITECTURE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page">
+  <h1 id="architecture">5. System Architecture</h1>
+
+  <p>The application follows a standard <strong>3-tier architecture</strong>:</p>
+
+  <div class="pipeline" style="justify-content:center; margin: 24px 0;">
+    <div class="pipe-box" style="background:#eef2ff;">👤<br><small>User Browser</small></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box" style="background:#f0fdf4; border-color:#22c55e; color:#166534;">⚛️<br><small>React Frontend<br>(Vercel)</small></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box" style="background:#fffbeb; border-color:#f59e0b; color:#92400e;">🟢<br><small>Express API<br>(Vercel)</small></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box" style="background:#faf5ff; border-color:#a855f7; color:#6b21a8;">🍃<br><small>MongoDB Atlas<br>(Cloud)</small></div>
+  </div>
+
+  <table>
+    <thead><tr><th>Layer</th><th>Technology</th><th>Responsibility</th></tr></thead>
+    <tbody>
+      <tr><td>Presentation</td><td>React + Tailwind CSS</td><td>User interface, form handling, state management</td></tr>
+      <tr><td>Application</td><td>Node.js + Express</td><td>Business logic, REST API, validation, error handling</td></tr>
+      <tr><td>Data</td><td>MongoDB Atlas</td><td>Persistent storage of student records</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ─── SECTION 6: DATABASE ─── -->
+  <h1 id="database">6. Database Design</h1>
+
+  <p>Database: <code>student-management-system</code> &nbsp;|&nbsp; Collection: <code>students</code></p>
+
+  <h2>Student Schema</h2>
+
+  <table>
+    <thead>
+      <tr><th>Field</th><th>Type</th><th>Required</th><th>Constraints</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>firstName</td><td>String</td><td>Yes</td><td>Max 50 chars</td></tr>
+      <tr><td>lastName</td><td>String</td><td>Yes</td><td>Max 50 chars</td></tr>
+      <tr><td>email</td><td>String</td><td>Yes</td><td>Unique, valid email format</td></tr>
+      <tr><td>phone</td><td>String</td><td>Yes</td><td>—</td></tr>
+      <tr><td>age</td><td>Number</td><td>Yes</td><td>Min 5, Max 100</td></tr>
+      <tr><td>course</td><td>String</td><td>Yes</td><td>—</td></tr>
+      <tr><td>grade</td><td>Enum</td><td>No</td><td>A, B, C, D, F, N/A (default: N/A)</td></tr>
+      <tr><td>address</td><td>String</td><td>No</td><td>—</td></tr>
+      <tr><td>enrollmentDate</td><td>Date</td><td>No</td><td>Default: current date</td></tr>
+      <tr><td>status</td><td>Enum</td><td>No</td><td>Active, Inactive, Graduated, Suspended</td></tr>
+      <tr><td>createdAt</td><td>Date</td><td>Auto</td><td>Mongoose timestamps</td></tr>
+      <tr><td>updatedAt</td><td>Date</td><td>Auto</td><td>Mongoose timestamps</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 7: API ENDPOINTS -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page">
+  <h1 id="api">7. API Endpoints</h1>
+
+  <p>Base URL: <code>https://edumanage-backend.vercel.app</code></p>
+
+  <table>
+    <thead>
+      <tr><th>Method</th><th>Endpoint</th><th>Description</th><th>Query Params</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span style="color:#22c55e;font-weight:700;">GET</span></td><td><code>/health</code></td><td>Health check</td><td>—</td></tr>
+      <tr><td><span style="color:#22c55e;font-weight:700;">GET</span></td><td><code>/api/students</code></td><td>Get all students</td><td>search, status, page, limit</td></tr>
+      <tr><td><span style="color:#22c55e;font-weight:700;">GET</span></td><td><code>/api/students/stats</code></td><td>Dashboard statistics</td><td>—</td></tr>
+      <tr><td><span style="color:#22c55e;font-weight:700;">GET</span></td><td><code>/api/students/:id</code></td><td>Get single student</td><td>—</td></tr>
+      <tr><td><span style="color:#3b82f6;font-weight:700;">POST</span></td><td><code>/api/students</code></td><td>Create new student</td><td>—</td></tr>
+      <tr><td><span style="color:#f59e0b;font-weight:700;">PUT</span></td><td><code>/api/students/:id</code></td><td>Update student</td><td>—</td></tr>
+      <tr><td><span style="color:#ef4444;font-weight:700;">DELETE</span></td><td><code>/api/students/:id</code></td><td>Delete student</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Sample Response — GET /api/students</h2>
+  <pre>{
+  "success": true,
+  "data": [
+    {
+      "_id": "665f1a2b3c4d5e6f7a8b9c0d",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "phone": "+1 234 567 8900",
+      "age": 20,
+      "course": "Computer Science",
+      "grade": "A",
+      "status": "Active",
+      "enrollmentDate": "2026-01-15T00:00:00.000Z"
+    }
+  ],
+  "pagination": {
+    "total": 25,
+    "page": 1,
+    "limit": 8,
+    "pages": 4
+  }
+}</pre>
+
+  <h2>Error Response Format</h2>
+  <pre>{
+  "success": false,
+  "message": "A student with this email already exists"
+}</pre>
+
+  <!-- ─── SECTION 8: FRONTEND ─── -->
+  <h1 id="frontend">8. Frontend Components</h1>
+
+  <table>
+    <thead>
+      <tr><th>Component</th><th>File</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Navbar</td><td><code>Navbar.jsx</code></td><td>Top navigation bar with logo and live status indicator</td></tr>
+      <tr><td>StatsCard</td><td><code>StatsCard.jsx</code></td><td>Animated stat cards on the dashboard</td></tr>
+      <tr><td>StudentTable</td><td><code>StudentTable.jsx</code></td><td>Paginated table with edit/delete actions</td></tr>
+      <tr><td>StudentModal</td><td><code>StudentModal.jsx</code></td><td>Add/Edit student form in a modal dialog</td></tr>
+      <tr><td>DeleteConfirmModal</td><td><code>DeleteConfirmModal.jsx</code></td><td>Delete confirmation dialog</td></tr>
+      <tr><td>App</td><td><code>App.jsx</code></td><td>Root component — state management, data fetching</td></tr>
+      <tr><td>API Service</td><td><code>services/api.js</code></td><td>Axios instance with all API call methods</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 9: LOCAL SETUP -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page">
+  <h1 id="local">9. Local Development Setup</h1>
+
+  <h2>Prerequisites</h2>
+  <ul>
+    <li>Node.js v20 or higher</li>
+    <li>npm v9 or higher</li>
+    <li>MongoDB Atlas account (free tier available)</li>
+    <li>Git</li>
+  </ul>
+
+  <h2>Step 1 — Clone the Repository</h2>
+  <pre>git clone https://github.com/elite1122/student-management-system.git
+cd student-management-system</pre>
+
+  <h2>Step 2 — Setup Backend</h2>
+  <pre>cd backend
+npm install
+# Create .env file with your MongoDB URI
+npm run dev
+# Server runs on http://localhost:5000</pre>
+
+  <h2>Step 3 — Setup Frontend</h2>
+  <pre>cd frontend
+npm install
+# .env already set to VITE_API_URL=http://localhost:5000/api
+npm run dev
+# App runs on http://localhost:3000</pre>
+
+  <div class="success-box">
+    Open <strong>http://localhost:3000</strong> in your browser to use the application.
+  </div>
+
+  <!-- ─── SECTION 10: DOCKER ─── -->
+  <h1 id="docker">10. Docker &amp; Containerization</h1>
+
+  <p>
+    The application is fully containerized. Each service has its own <code>Dockerfile</code> and
+    they are orchestrated together using <code>docker-compose.yml</code>.
+  </p>
+
+  <h2>Backend Dockerfile</h2>
+  <p>Uses a <strong>multi-stage build</strong> — installs dependencies in a builder stage, then copies only the production files to a lean final image. Runs as a non-root user for security.</p>
+  <pre>FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+
+FROM node:20-alpine
+RUN addgroup -S appgroup &amp;&amp; adduser -S appuser -G appgroup
+WORKDIR /app
+COPY --from=builder /app/node_modules ./node_modules
+COPY . .
+USER appuser
+EXPOSE 5000
+CMD ["node", "server.js"]</pre>
+
+  <h2>Frontend Dockerfile</h2>
+  <p>Builds the React app with Vite, then serves the static output using <strong>Nginx</strong>.</p>
+  <pre>FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]</pre>
+
+  <h2>Docker Compose</h2>
+  <p>Connects both containers on a shared internal network. The frontend proxies <code>/api</code> requests to the backend via Nginx.</p>
+
+  <h2>Running with Docker</h2>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content"><strong>Install Docker Desktop</strong> and ensure it is running.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content"><strong>Create root .env file</strong> with <code>MONGO_URI=your_connection_string</code></div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content"><strong>Build images:</strong><pre>docker compose build</pre></div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content"><strong>Start containers:</strong><pre>docker compose up -d</pre></div>
+  </div>
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-content"><strong>Open browser:</strong> Frontend → <code>http://localhost:80</code> &nbsp;|&nbsp; API → <code>http://localhost:5000</code></div>
+  </div>
+
+  <h2>Docker Commands Reference</h2>
+  <table>
+    <thead><tr><th>Command</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>docker compose up -d</code></td><td>Start all containers in background</td></tr>
+      <tr><td><code>docker compose down</code></td><td>Stop and remove containers</td></tr>
+      <tr><td><code>docker compose logs -f</code></td><td>View live logs</td></tr>
+      <tr><td><code>docker compose ps</code></td><td>List running containers</td></tr>
+      <tr><td><code>docker compose up --build -d</code></td><td>Rebuild and restart after code changes</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 11: CI/CD -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page">
+  <h1 id="cicd">11. CI/CD Pipeline (GitHub Actions)</h1>
+
+  <p>
+    Every push to the <code>main</code> branch triggers an automated pipeline defined in
+    <code>.github/workflows/ci-cd.yml</code> that builds and deploys the application to Vercel.
+  </p>
+
+  <h2>Pipeline Flow</h2>
+
+  <div class="pipeline" style="justify-content:center; margin:20px 0; flex-wrap:wrap; gap:8px;">
+    <div class="pipe-box">git push<br><small>main branch</small></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box">GitHub<br>Actions Trigger</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box" style="background:#f0fdf4;border-color:#22c55e;color:#166534;">Job 1<br>Deploy Backend</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box" style="background:#eef2ff;">Job 2<br>Deploy Frontend</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box" style="background:#f0fdf4;border-color:#22c55e;color:#166534;">✅ Live on<br>Vercel</div>
+  </div>
+
+  <h2>Job 1 — Deploy Backend</h2>
+  <ol>
+    <li>Checkout repository code</li>
+    <li>Setup Node.js 20</li>
+    <li>Install Vercel CLI globally</li>
+    <li>Deploy backend to Vercel (production) using project secrets</li>
+  </ol>
+
+  <h2>Job 2 — Deploy Frontend</h2>
+  <ol>
+    <li>Checkout repository code</li>
+    <li>Setup Node.js 20</li>
+    <li>Install npm dependencies</li>
+    <li>Build the React app with <code>VITE_API_URL</code> injected</li>
+    <li>Install Vercel CLI globally</li>
+    <li>Deploy frontend to Vercel (production)</li>
+  </ol>
+
+  <div class="info-box">
+    <strong>Note:</strong> Job 2 only starts after Job 1 completes successfully (<code>needs: deploy-backend</code>).
+    This ensures the backend is always deployed before the frontend.
+  </div>
+
+  <h2>Required GitHub Secrets</h2>
+
+  <table>
+    <thead>
+      <tr><th>Secret Name</th><th>Description</th><th>Where to Find</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>VERCEL_TOKEN</code></td><td>Vercel authentication token</td><td>Vercel → Account Settings → Tokens</td></tr>
+      <tr><td><code>VERCEL_ORG_ID</code></td><td>Vercel team/organization ID</td><td>Vercel → Team Settings → General</td></tr>
+      <tr><td><code>VERCEL_BACKEND_PROJECT_ID</code></td><td>Backend Vercel project ID</td><td>Backend project → Settings → General</td></tr>
+      <tr><td><code>VERCEL_FRONTEND_PROJECT_ID</code></td><td>Frontend Vercel project ID</td><td>Frontend project → Settings → General</td></tr>
+      <tr><td><code>VITE_API_URL</code></td><td>Deployed backend API URL</td><td>Your backend Vercel URL + /api</td></tr>
+      <tr><td><code>MONGO_URI</code></td><td>MongoDB Atlas connection string</td><td>Atlas → Connect → Drivers</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 12: DEPLOYMENT -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page">
+  <h1 id="deployment">12. Deployment (Vercel)</h1>
+
+  <p>Both services are deployed to <strong>Vercel</strong> as separate projects.</p>
+
+  <h2>Backend Deployment</h2>
+  <p>
+    The Express backend is deployed as a <strong>Vercel Serverless Function</strong>.
+    The <code>vercel.json</code> routes all incoming requests to <code>server.js</code>.
+    MongoDB connections are cached between function invocations for performance.
+  </p>
+
+  <pre>{
+  "version": 2,
+  "builds": [{ "src": "server.js", "use": "@vercel/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "server.js" }]
+}</pre>
+
+  <h2>Frontend Deployment</h2>
+  <p>
+    The React app is built by Vite into a static bundle and hosted on Vercel's CDN.
+    The <code>vercel.json</code> rewrite rule ensures all routes serve <code>index.html</code>
+    for React Router compatibility.
+  </p>
+
+  <pre>{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}</pre>
+
+  <h2>Live URLs</h2>
+  <table>
+    <thead><tr><th>Service</th><th>URL</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Frontend</td><td>https://student-management-system.vercel.app</td><td>✅ Live</td></tr>
+      <tr><td>Backend API</td><td>https://edumanage-backend.vercel.app</td><td>✅ Live</td></tr>
+      <tr><td>Health Check</td><td>https://edumanage-backend.vercel.app/health</td><td>✅ 200 OK</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ─── SECTION 13: ENV VARS ─── -->
+  <h1 id="env">13. Environment Variables</h1>
+
+  <h2>Backend (.env)</h2>
+  <table>
+    <thead><tr><th>Variable</th><th>Description</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><code>MONGO_URI</code></td><td>MongoDB Atlas connection string</td><td>mongodb+srv://user:pass@cluster.mongodb.net/db</td></tr>
+      <tr><td><code>PORT</code></td><td>Server port (local only)</td><td>5000</td></tr>
+      <tr><td><code>NODE_ENV</code></td><td>Environment mode</td><td>development / production</td></tr>
+      <tr><td><code>FRONTEND_URL</code></td><td>CORS allowed origin</td><td>https://your-frontend.vercel.app</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Frontend (.env)</h2>
+  <table>
+    <thead><tr><th>Variable</th><th>Description</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><code>VITE_API_URL</code></td><td>Backend API base URL</td><td>http://localhost:5000/api</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning-box">
+    <strong>Security:</strong> Never commit <code>.env</code> files to Git.
+    They are listed in <code>.gitignore</code>. Use GitHub Secrets for CI/CD and
+    Vercel Environment Variables for production.
+  </div>
+
+  <!-- ─── SECTION 14: CONCLUSION ─── -->
+  <h1 id="conclusion">14. Conclusion</h1>
+
+  <p>
+    The Student Management System demonstrates a complete, production-ready full-stack application
+    built with modern technologies and best practices:
+  </p>
+
+  <ul>
+    <li><strong>Separation of concerns</strong> — frontend and backend are independent deployable units</li>
+    <li><strong>Containerization</strong> — Docker ensures the app runs consistently on any machine</li>
+    <li><strong>Automation</strong> — GitHub Actions eliminates manual deployment steps</li>
+    <li><strong>Cloud-native</strong> — MongoDB Atlas and Vercel provide scalable, managed infrastructure</li>
+    <li><strong>Security</strong> — secrets managed via GitHub Secrets and Vercel Environment Variables</li>
+    <li><strong>UX-focused</strong> — smooth animations, real-time feedback, and responsive design</li>
+  </ul>
+
+  <div class="success-box">
+    <strong>GitHub Repository:</strong> https://github.com/elite1122/student-management-system
+  </div>
+
+  <div class="doc-footer">
+    Student Management System &nbsp;|&nbsp; Technical Documentation v1.0 &nbsp;|&nbsp; April 2026<br>
+    Developed by Md Rasheduzzaman &nbsp;|&nbsp; github.com/elite1122
+  </div>
+</div>
+
+</body>
+</html>
