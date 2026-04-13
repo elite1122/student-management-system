@@ -17,7 +17,7 @@ export default function Navbar() {
             </div>
             <div>
               <h1 className="text-base font-bold font-display text-slate-900 leading-tight">
-                EduManage Pro
+                EduManage
               </h1>
               <p className="text-xs text-slate-500 leading-tight">Student Management System</p>
             </div>
